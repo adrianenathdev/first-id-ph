@@ -1,0 +1,300 @@
+{
+  "national-id": {
+    "effort": 2,
+    "options": "Bring a PSA birth certificate plus an accepted government photo ID if you have both. PSA also lists supporting documents such as an eligible school ID. If you have only a birth certificate, ask the registration center which fallback documents it can accept.",
+    "steps": [
+      "Check the PSA supporting-document list and find a registration center.",
+      "Bring your documents for in-person registration and biometrics. Keep your transaction slip.",
+      "When your digital record is available, open national-id.gov.ph or eGovPH and complete facial verification.",
+      "Ask a registration center about the paper National ID or track a physical card with PHLPost."
+    ],
+    "processing": "Digital access is available after PSA makes your record available and you pass verification. PSA gives no universal wait from registration to digital availability here.",
+    "delivery": "The paper ID is requested at a registration center. Physical delivery varies. Track it through PHLPost once tracking is available.",
+    "timingSource": "https://psa.gov.ph/content/more-filipinos-download-use-digital-national-ld-transactions"
+  },
+  "postal-id": {
+    "effort": 1,
+    "options": "With no photo ID, bring a PSA or local civil registry birth certificate that meets PHLPost’s receipt requirement, plus separate proof of address. With one accepted primary ID, such as National ID, a valid passport or driver’s license, or GSIS or SSS UMID, pair it with separate proof of address. With only a secondary ID, you’ll need another accepted secondary document and one must bear your photo and signature.",
+    "steps": [
+      "Download the form and check which post office captures Postal ID applications.",
+      "Bring originals and copies of one primary document or two eligible secondary documents, plus proof of address such as a barangay residency certificate, lease, or accepted bill.",
+      "Apply in person, pay the fee and complete photo and biometric capture.",
+      "Keep the receipt and confirm the expected delivery or rush pickup date with the branch."
+    ],
+    "processing": "PHLPost’s 2026 charter lists same-day and next-working-day rush pickup at select offices subject to their cutoffs.",
+    "delivery": "The charter lists about 24 days in total for regular applications at other post offices, including dispatch and mail delivery. Confirm your route at the counter.",
+    "timingSource": "https://phlpost.gov.ph/wp-content/uploads/2026/04/APPROVED-PHLPost-Citizens-Charter-Series-of-2026.pdf#page=135"
+  },
+  "philippine-passport": {
+    "effort": 3,
+    "options": "One DFA-accepted ID, such as National ID or an LTO driver’s license, can satisfy the ID requirement alongside the PSA birth certificate. An adult student may use a current school ID plus Certificate of Registration. Check DFA’s format and issuance conditions for Postal ID, voter certification, and other IDs.",
+    "steps": [
+      "Review the DFA adult checklist and accepted IDs for your office.",
+      "Book and pay through the official portal. Save your confirmation and application packet.",
+      "Appear with your original documents and copies for verification and biometric capture.",
+      "Collect the passport on the release date or follow the courier instructions if you selected delivery."
+    ],
+    "processing": "DFA lists regular processing of 10 working days in NCR and 12 at regional offices. Express is 5 or 7 working days respectively, where available.",
+    "delivery": "Courier delivery adds transit time after processing. Use the release date or courier estimate provided for your appointment.",
+    "timingSource": "https://dfa.gov.ph/images/2025/transparency/DFA_Citizens_Charter_2025_1st_Edition_1.pdf"
+  },
+  "drivers-license": {
+    "effort": 5,
+    "options": "Start with an LTO student permit. A National ID or other photo ID can support identity checks. The permit, medical certificate and practical driving course are separate requirements.",
+    "steps": [
+      "Obtain a student permit and hold it for at least one month.",
+      "Complete the practical driving course and get an LTO-accredited medical certificate.",
+      "Apply at LTO with the required documents and pass the theory and practical tests.",
+      "Pay the applicable fees and confirm how the license will be issued."
+    ],
+    "processing": "The one-month permit holding period comes before application. Course, appointment and exam availability add time.",
+    "delivery": "Confirm card issuance or pickup at your LTO office.",
+    "timingSource": null
+  },
+  "student-permit": {
+    "effort": 3,
+    "options": "An accepted government ID can satisfy the identity check. Consult the LTO checklist for alternatives and whether supporting civil registry documents apply.",
+    "steps": [
+      "Complete the 15-hour Theoretical Driving Course and get an accredited medical certificate.",
+      "Prepare the application and required proof of identity.",
+      "Submit at LTO, pay and collect the permit following the office’s instructions."
+    ],
+    "processing": "Timing depends on course scheduling and the LTO office appointment.",
+    "delivery": "Confirm pickup at your LTO office.",
+    "timingSource": null
+  },
+  "local-id": {
+    "effort": 2,
+    "options": "If you have one government ID, ask the LGU whether it accepts it alongside separate proof of address. If you have only a school ID or a residency certificate, check the local fallback list.",
+    "steps": [
+      "Look up your city or municipal citizen ID service, or contact your barangay.",
+      "Check who qualifies and which identity and residence documents are accepted.",
+      "Submit online if the locality offers it, or apply in person.",
+      "Follow the office’s verification and collection instructions."
+    ],
+    "processing": "The local government sets the processing schedule.",
+    "delivery": "Ask whether the locality offers a digital ID, pickup or delivery.",
+    "timingSource": null
+  },
+  "school-id": {
+    "effort": 1,
+    "options": "Ask your registrar if your enrollment record is enough for issuance. For an adult passport application, pair your current school ID with a Certificate of Registration.",
+    "steps": [
+      "Complete enrollment and confirm your student record.",
+      "Check the registrar’s photo, verification and replacement requirements.",
+      "Submit the request and collect the ID according to the school’s schedule."
+    ],
+    "processing": "Depends on enrollment and the school’s issuance schedule.",
+    "delivery": "Ask your registrar about pickup or a digital student ID.",
+    "timingSource": null
+  },
+  "tin-id": {
+    "effort": 2,
+    "options": "You need a TIN already assigned to you. If you only have a National ID, check BIR’s checklist for your taxpayer category to see what you need to register for a TIN first.",
+    "steps": [
+      "Confirm your existing TIN and the email recorded by BIR.",
+      "Enroll in ORUS and follow its Digital TIN ID generation steps.",
+      "Upload a compliant photo and save the generated ID."
+    ],
+    "processing": "Available digitally after successful account enrollment and generation. Any TIN or email update can add time.",
+    "delivery": "Download from ORUS. A physical TIN card follows a separate BIR process.",
+    "timingSource": null
+  },
+  "philhealth-id": {
+    "effort": 2,
+    "options": "Bring one accepted document listed for your membership category, such as National ID or an eligible birth certificate when permitted. Add any employment or dependent documents that apply.",
+    "steps": [
+      "Check whether you already have a PhilHealth number.",
+      "Fill in the membership form for registration or an update.",
+      "Submit at a PhilHealth office and ask for the ID and Member Data Record."
+    ],
+    "processing": "The local office can confirm its current turnaround.",
+    "delivery": "Ask the branch about release or pickup.",
+    "timingSource": null
+  },
+  "mysss-card": {
+    "effort": 4,
+    "options": "Use National ID registration for identity verification. You also need a permanent SS number, matching records, My.SSS access, and approval for the partner bank account.",
+    "steps": [
+      "Check that your SS number is permanent and your records match PhilSys.",
+      "In My.SSS, open the MySSS Card service and complete identity verification.",
+      "Choose a partner bank and finish its account and card steps.",
+      "Wait for bank confirmation of pickup or delivery."
+    ],
+    "processing": "SSS states up to 15 working days in Metro Manila or 20 outside Metro Manila after successful bank account opening.",
+    "delivery": "The partner bank confirms whether pickup or delivery is available and when.",
+    "timingSource": null
+  },
+  "pagibig-card": {
+    "effort": 3,
+    "options": "Pair one Pag-IBIG-accepted ID with your membership ID number and the application form. Check the branch’s partner-bank requirements.",
+    "steps": [
+      "Locate a branch that processes Loyalty Card Plus applications.",
+      "Bring the form and supporting documents, then pay the applicable fee.",
+      "Complete data capture and get your card or release instructions."
+    ],
+    "processing": "Branch and partner bank availability determine turnaround.",
+    "delivery": "Confirm onsite release or collection with the branch.",
+    "timingSource": null
+  },
+  "gsis-id": {
+    "effort": 4,
+    "options": "A government photo ID can support verification, but a GSIS record and eligibility are the starting requirements.",
+    "steps": [
+      "Check your GSIS record and registered details.",
+      "Use the GSIS Touch or GSIS office enrollment channel currently provided for the Digital ID.",
+      "Follow the account and identity verification prompts to access your ID."
+    ],
+    "processing": "Depends on enrollment and successful verification.",
+    "delivery": "Digital credential accessed through GSIS. Ask GSIS about legacy card concerns.",
+    "timingSource": null
+  },
+  "pwd-id": {
+    "effort": 4,
+    "options": "If you have one accepted national or local ID, bring it with the required disability and residency evidence. NCDA guidance allows a barangay certificate in the absence of a valid ID.",
+    "steps": [
+      "Contact the local PDAO or social welfare office for its disability category checklist.",
+      "Gather proof of residence, photos and the required disability documentation.",
+      "Submit the application for evaluation and keep the reference or collection details."
+    ],
+    "processing": "Depends on LGU processing and disability documentation review.",
+    "delivery": "Ask your PDAO about pickup or local delivery options.",
+    "timingSource": null
+  },
+  "solo-parent-id": {
+    "effort": 4,
+    "options": "An accepted identity document can help verify who you are. You also need proof of residence and documentation for your solo-parent category.",
+    "steps": [
+      "Contact your local social welfare office or use the LGU’s online service if available.",
+      "Gather residence and category evidence and submit the forms.",
+      "Complete any required interview or evaluation, then follow the release instructions."
+    ],
+    "processing": "Ask the local office for the estimate after it confirms your checklist.",
+    "delivery": "Pickup or digital access depends on the LGU.",
+    "timingSource": null
+  },
+  "prc-id": {
+    "effort": 5,
+    "options": "One valid ID can support identification at your appointment. Eligibility still comes from licensure and initial registration requirements.",
+    "steps": [
+      "Confirm that you qualify for initial registration and complete oath-taking where required.",
+      "Sign in to LERIS, select Initial Registration and choose an appointment.",
+      "Pay, bring the appointment packet and required documents, and follow release instructions."
+    ],
+    "processing": "Timing depends on licensing, oath-taking and appointment availability.",
+    "delivery": "Follow your PRC office’s appointment instructions for issuance or collection.",
+    "timingSource": null
+  },
+  "owwa-ecard": {
+    "effort": 4,
+    "options": "Have your valid passport and check your OWWA membership and OFW eligibility. Another local ID does not establish OFW status.",
+    "steps": [
+      "Check the e-Card portal’s eligibility rules and verify your membership.",
+      "Submit the online application and select an available release option.",
+      "Save your reference and follow OWWA’s instructions when notified."
+    ],
+    "processing": "Processing depends on membership verification and the receiving office.",
+    "delivery": "Confirm release or pickup arrangements in the official portal.",
+    "timingSource": null
+  },
+  "seafarer-id": {
+    "effort": 5,
+    "options": "You need the required seafarer and identity documents for the chosen credential. Check the current MARINA list for any passport or training documents it requires.",
+    "steps": [
+      "Select SID or SRB and review the requirements for first issuance.",
+      "Use MARINA’s current appointment channel, submit the information and pay as directed.",
+      "Appear with originals for verification and capture, then follow release instructions."
+    ],
+    "processing": "Depends on the credential, office and appointment availability.",
+    "delivery": "Confirm collection or delivery with MARINA for your application.",
+    "timingSource": null
+  },
+  "senior-citizen-id": {
+    "effort": 4,
+    "options": "An accepted ID showing age and residence can support the application. Ask OSCA whether it needs separate address evidence. This route applies from age 60.",
+    "steps": [
+      "Contact the OSCA in your city or municipality.",
+      "Prepare proof of age, address, photos and the application form required locally.",
+      "Submit for verification and follow the LGU’s release instructions."
+    ],
+    "processing": "Processing depends on the local OSCA.",
+    "delivery": "Check for pickup or locally available digital access.",
+    "timingSource": null
+  },
+  "acr-i-card": {
+    "effort": 5,
+    "options": "A passport is the starting identity document for most cases. Bring the immigration and visa documents required for your category.",
+    "steps": [
+      "Identify the applicable Bureau of Immigration application type.",
+      "Gather visa, passport and registration materials and file with the appropriate BI office.",
+      "Complete clearance, payment and biometrics as directed, then check for release."
+    ],
+    "processing": "Timing depends on immigration status and the application type.",
+    "delivery": "Confirm your office’s release instructions.",
+    "timingSource": null
+  },
+  "voter-registration": {
+    "effort": null,
+    "options": "One COMELEC-accepted ID can support voter registration. A barangay certificate, cedula or police clearance is not on the cited registration list for the latest drive.",
+    "steps": [
+      "Confirm the current registration window and your local election office.",
+      "Bring accepted proof of identity and appear for registration and biometrics.",
+      "If already registered and seeking certification, request it from the appropriate COMELEC office."
+    ],
+    "processing": "Registration depends on the open period and approval. Certification is a separate service.",
+    "delivery": "Physical Voter’s ID issuance was suspended. Ask COMELEC how certification is released.",
+    "timingSource": "https://www.pna.gov.ph/article/voter-registration-for-may-2028-polls-resumes-nov-10-at-luneta"
+  },
+  "birth-certificate": {
+    "effort": null,
+    "options": "Use proof of identity that PSA accepts for your request and release channel. If you have no suitable ID, ask PSA about accepted alternatives or an authorized request.",
+    "steps": [
+      "Choose PSA Serbilis delivery or an appointment at a PSA outlet.",
+      "Fill in the certificate details, choose the release option and pay the applicable fee.",
+      "Save the reference and check the request status.",
+      "Bring the identity or authorization documents required to receive the copy."
+    ],
+    "processing": "PSA Serbilis publishes estimates by destination and release method. A manual search can add 10–15 working days.",
+    "delivery": "Metro Manila standard processing and delivery is about 3–4 working days after payment. Check the destination table for other areas.",
+    "timingSource": "https://www.psaserbilis.com.ph/TermandCondition"
+  },
+  "barangay-certificates": {
+    "effort": null,
+    "options": "Ask if one accepted photo ID plus a proof of address is enough, and what the barangay can use to verify residence if you have no ID.",
+    "steps": [
+      "Go to your barangay hall and request the specific certificate you need.",
+      "Bring the barangay’s requested proof of identity and residence.",
+      "For first-time jobseeker certification, ask about the required oath and eligibility checks.",
+      "Collect the signed certificate and bring it to the relevant agency."
+    ],
+    "processing": "The barangay sets its release schedule.",
+    "delivery": "Ask your barangay about collection. A residency certificate can serve as Postal ID address evidence.",
+    "timingSource": null
+  },
+  "nbi-clearance": {
+    "effort": null,
+    "options": "One ID may be insufficient. NBI’s published general checklist calls for two accepted documents and lists a PSA birth certificate among its examples. Confirm both documents with NBI before your appointment.",
+    "steps": [
+      "Choose the regular portal or the first-time jobseeker portal if eligible.",
+      "Book a branch appointment and pay or bring the required jobseeker certification and oath for the waiver.",
+      "Bring the required documents for verification and biometric capture.",
+      "Collect the clearance or return on the date NBI gives you if additional review is needed."
+    ],
+    "processing": "NBI says no-hit cases can be released at the appointment. A hit generally requires 5–10 working days of review.",
+    "delivery": "Check the branch’s instructions for onsite release and any return date.",
+    "timingSource": "https://nbi.gov.ph/how-to-apply-nbi-clearance/"
+  },
+  "police-clearance": {
+    "effort": null,
+    "options": "Check whether the current PNP checklist allows one ID or requires a second. If you only have one, confirm any listed supporting-document route with the station before paying.",
+    "steps": [
+      "Register in the National Police Clearance System and select a station and appointment.",
+      "Pay or follow the first-time jobseeker waiver instructions if eligible.",
+      "Appear with the required documents and payment proof for verification and capture.",
+      "Collect the clearance after checks or follow instructions for further verification."
+    ],
+    "processing": "Depends on the appointment and verification result.",
+    "delivery": "Confirm release with the selected police station.",
+    "timingSource": null
+  }
+}
