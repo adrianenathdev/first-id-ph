@@ -45,7 +45,9 @@ export async function POST(request: Request) {
   }
 
   const { db, hash } = services
-  const rate = await db.rpc('allow_consultation_request', { action: 'submit', fingerprint: hash('network', browserFingerprint(request)) })
+  const fingerprint = await hash('network', browserFingerprint(request))
+  if (!fingerprint) return reply({ error: 'Consultation submissions are temporarily unavailable.' }, 503)
+  const rate = await db.rpc('allow_consultation_request', { action: 'submit', fingerprint })
   if (rate.error) return reply({ error: 'Consultation submissions are temporarily unavailable.' }, 503)
   if (!rate.data) return reply({ error: 'Too many requests. Try again in 15 minutes.' }, 429)
 
@@ -57,9 +59,11 @@ export async function POST(request: Request) {
 
   for (let attempt = 0; attempt < 3; attempt++) {
     const code = makeTrackingCode()
+    const trackingHash = await hash('tracking', code)
+    if (!trackingHash) return reply({ error: 'Consultation submissions are temporarily unavailable.' }, 503)
     const { error } = await db.from('consultation_requests').insert({
       user_id: null, contact_email: email, contact_channel: channel, contact_profile: profile,
-      guide_slug: guide, question, tracking_code_hash: hash('tracking', code),
+      guide_slug: guide, question, tracking_code_hash: trackingHash,
       privacy_notice_version: consultationPrivacyVersion, privacy_consented_at: new Date().toISOString(),
       client_intake_snapshot: { full_name, age, barangay, city, province, documents: [...new Set(documents)] },
     })

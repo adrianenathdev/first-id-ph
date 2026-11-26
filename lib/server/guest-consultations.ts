@@ -1,4 +1,4 @@
-import { createHmac, randomInt } from 'node:crypto'
+import { randomInt } from 'node:crypto'
 import { createClient } from '@supabase/supabase-js'
 
 const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -10,12 +10,15 @@ export function makeTrackingCode() {
 export function getGuestServices() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL
   const serviceKey = process.env.SUPABASE_SECRET_KEY
-  const trackingKey = process.env.TRACKING_CODE_SECRET
-  if (!url || !serviceKey || !trackingKey || trackingKey.length < 32) return null
+  if (!url || !serviceKey) return null
 
+  const db = createClient(url, serviceKey, { auth: { persistSession: false, autoRefreshToken: false } })
   return {
-    db: createClient(url, serviceKey, { auth: { persistSession: false, autoRefreshToken: false } }),
-    hash: (purpose: string, value: string) => createHmac('sha256', trackingKey).update(purpose + ':' + value).digest('hex'),
+    db,
+    async hash(purpose: 'network' | 'tracking', value: string) {
+      const { data, error } = await db.rpc('hash_consultation_value', { purpose, input_value: value })
+      return !error && typeof data === 'string' ? data : null
+    },
   }
 }
 

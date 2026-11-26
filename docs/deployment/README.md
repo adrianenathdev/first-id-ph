@@ -23,12 +23,11 @@ Use [`.env.example`](../../.env.example) as the template. Supply the values befo
 | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | The project’s browser-safe publishable key. |
 | `SUPABASE_SECRET_KEY` | Server-only Supabase key for staff management and guest APIs. |
 | `APP_URL` | The deployed site origin. Auth invitations use it to build a redirect URL. |
-| `TRACKING_CODE_SECRET` | Stable server-only random secret, at least 32 characters. Changing it invalidates codes issued with the old key. |
 | `CONSULTATION_PRIVACY_CONTROLLER` | Name of the organization or person responsible for consultation data. |
 | `CONSULTATION_PRIVACY_EMAIL` | Monitored email address for privacy requests. |
 | `CONSULTATION_PRIVACY_RETENTION` | The actual retention policy in plain language. This value is published in the notice. |
 
-Generate a tracking secret with `openssl rand -hex 32` and store it in the host’s secrets manager. Keep real env files and credentials out of Git. Configure a trusted proxy that replaces client-supplied forwarding headers with the verified client address for rate limiting.
+Keep real env files and credentials out of Git. Configure a trusted proxy that replaces client-supplied forwarding headers with the verified client address for rate limiting.
 
 The production request form is disabled until all three privacy settings are valid. Set a retention period the team can actually enforce. Update the [notice version](../../lib/consultation-privacy.ts) when the processing terms change.
 
@@ -44,6 +43,8 @@ supabase db push
 ```
 
 For a new project that needs the published ID catalog, append `--include-seed` to the dry run and push. The seed leaves existing guide rows in place. Check migration history again after the push.
+
+The tracking migration generates a Supabase Vault key on a fresh environment. When moving an existing environment with issued codes, carry over its tracking key under the Vault name `first_id_consultation_tracking` before accepting requests. Replacing the key invalidates those codes.
 
 Review migrations before release. If the Supabase project has migration history absent from this repository, reconcile that history before pushing.
 
