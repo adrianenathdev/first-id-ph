@@ -507,7 +507,7 @@ html { scroll-padding-top: 76px; }
 .staff-password-field > .button { margin-top: 31px; }
 .consult-panel .form-field[data-state="valid"] :is(input, textarea) { border-color: #43806b; background: #f5faf6; }
 .consult-panel .form-field[data-state="invalid"] :is(input, textarea) { border-color: #a13229; background: #fff5f2; }
-.consult-panel .form-field .field-feedback { margin: 0; font-size: .83rem; line-height: 1.35; }
+.consult-panel .form-field .field-feedback { margin: 0; min-height: 1.35em; font-size: .83rem; line-height: 1.35; }
 .field-feedback span { font-weight: 800; }
 .form-field[data-state="valid"] .field-feedback { color: #236049; }
 .form-field[data-state="invalid"] .field-feedback { color: #a13229; }

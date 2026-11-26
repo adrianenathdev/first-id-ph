@@ -79,8 +79,8 @@ export default function FormField({ label, children, validate, recheckKey, hint 
       },
     })}
     {hint && <p className="field-example" id={hintId}>{hint}</p>}
-    {result && <p className="field-feedback" id={feedbackId} aria-live="polite">
-      <span aria-hidden="true">{result.state === 'valid' ? '✓' : '!'}</span> {result.message}
-    </p>}
+    <p className="field-feedback" id={feedbackId} aria-live="polite">
+      {result && <><span aria-hidden="true">{result.state === 'valid' ? '✓' : '!'}</span> {result.message}</>}
+    </p>
   </div>
 }
