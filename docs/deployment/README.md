@@ -71,3 +71,7 @@ Use Brevo SMTP in production if Brevo is your Auth mail provider. App-level `EMA
 - Sign in as a consultant, claim the sample ticket, and move it through reached out, meeting scheduled, and closed. Verify that contact details appear only after claim for consultants.
 - Sign in as an admin and check pending invitations, pagination, and account controls. Test invitation and password-reset delivery on the deployed domain.
 - Verify the published privacy notice and confirm that any demonstration staff accounts have been disabled before opening production to real clients.
+
+## Run a public demo
+
+Set `CONSULTATION_DEMO_MODE=true` and redeploy to enable the consultation form using fictional data. The test visitor can choose an ID, select document types, and track the resulting sample ticket. The server replaces any typed identity, contact details, location, and free text with sample values. Clear the flag and configure the actual privacy notice before accepting real requests.

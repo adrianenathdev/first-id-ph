@@ -1,11 +1,22 @@
 import type { Metadata } from 'next'
-import { consultationPrivacyVersion, getConsultationPrivacyDetails } from '../../lib/consultation-privacy'
+import { getConsultationMode, getConsultationPrivacyDetails } from '../../lib/consultation-privacy'
 
 export const metadata: Metadata = { title: 'Consultation privacy notice' }
 export const dynamic = 'force-dynamic'
 
 export default function PrivacyPage() {
   const details = getConsultationPrivacyDetails()
+  const mode = getConsultationMode()
+
+  if (mode.demo) return <article className="wrap section guide consultation">
+    <h1>Demo consultation privacy notice</h1>
+    <p className="intro">Use fictional details in this demo. The form saves a sample name, age, address, email and question regardless of what you type.</p>
+    <h2>What the demo saves</h2>
+    <p>It saves your selected ID guide and document types, the sample record, the date and version of your agreement, and the ticket’s progress in Supabase. If you choose a social platform, it saves a sample profile link. It also stores a protected version of the tracking code so you can check the ticket’s progress.</p>
+    <h2>Who can see the sample request</h2>
+    <p>Admins and the consultant who claims it can see the sample details. Anyone with the tracking code can see the ticket status and any scheduled meeting time. The demo is for testing and does not send consultation messages.</p>
+    <p>Version {mode.privacyVersion}</p>
+  </article>
 
   return <article className="wrap section guide consultation">
     <h1>Consultation privacy notice</h1>
@@ -29,6 +40,6 @@ export default function PrivacyPage() {
     <h2>Your privacy rights</h2>
     <p>Under the Philippine Data Privacy Act of 2012, you can ask to access or correct your information, withdraw consent, request blocking or deletion where applicable, or raise a privacy complaint. You may also contact the National Privacy Commission.</p>
     {details && <p>For privacy requests, contact {details.controller} at <a className="text-link" href={`mailto:${details.contact}`}>{details.contact}</a>.</p>}
-    <p>Version {consultationPrivacyVersion} · <a className="text-link" href="https://privacy.gov.ph/the-right-to-be-informed/">National Privacy Commission guidance ↗</a></p>
+    <p>Version {mode.privacyVersion} · <a className="text-link" href="https://privacy.gov.ph/the-right-to-be-informed/">National Privacy Commission guidance ↗</a></p>
   </article>
 }

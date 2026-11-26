@@ -1,4 +1,5 @@
-import { consultationPrivacyVersion, getConsultationPrivacyDetails } from '../../../lib/consultation-privacy'
+import { getConsultationMode } from '../../../lib/consultation-privacy'
+import { demoConsultation, demoSocialProfiles } from '../../../lib/consultation-demo'
 import { readProfile, validContactEmail } from '../../../lib/contact-format'
 import { documentOptions } from '../../../lib/client-intake'
 import { browserFingerprint, getGuestServices, makeTrackingCode, reply } from '../../../lib/server/guest-consultations'
@@ -11,22 +12,24 @@ function readText(value: unknown, max: number) {
 
 export async function POST(request: Request) {
   const services = getGuestServices()
-  if (!services || (process.env.NODE_ENV === 'production' && !getConsultationPrivacyDetails())) return reply({ error: 'Consultation submissions are temporarily unavailable.' }, 503)
+  const mode = getConsultationMode()
+  if (!services || !mode.available) return reply({ error: 'Consultation submissions are temporarily unavailable.' }, 503)
   const raw = await request.text()
   if (raw.length > 12000) return reply({ error: 'This request is too long.' }, 413)
   const body = (() => { try { return JSON.parse(raw) } catch { return null } })()
   if (body?.privacyConsent !== true) return reply({ error: 'Review the privacy notice and agree before submitting.' }, 400)
-  if (body.privacyVersion !== consultationPrivacyVersion) return reply({ error: 'The privacy notice changed. Reload the form and review it again.' }, 409)
-  const full_name = readText(body?.full_name, 120)
-  const age = body?.age
-  const barangay = readText(body?.barangay, 100)
-  const city = readText(body?.city, 100)
-  const province = readText(body?.province, 100)
-  const question = readText(body?.question, 800)
+  if (body.privacyVersion !== mode.privacyVersion) return reply({ error: 'The privacy notice changed. Reload the form and review it again.' }, 409)
+  const submittedDetails = mode.demo ? demoConsultation : body
+  const full_name = readText(submittedDetails?.full_name, 120)
+  const age = submittedDetails?.age
+  const barangay = readText(submittedDetails?.barangay, 100)
+  const city = readText(submittedDetails?.city, 100)
+  const province = readText(submittedDetails?.province, 100)
+  const question = readText(submittedDetails?.question, 800)
   const guide = readText(body?.guide, 120) || null
   const documents = body?.documents
   const channel = body?.channel
-  const email = readText(body?.email, 254)
+  const email = readText(submittedDetails?.email, 254)
 
   if (!full_name || !Number.isInteger(age) || age < 18 || age > 120 || !barangay || !city || !province || !question ||
       !Array.isArray(documents) || documents.length > Object.keys(documentOptions).length ||
@@ -39,7 +42,7 @@ export async function POST(request: Request) {
   if (channel !== 'email' && channel !== 'facebook' && channel !== 'instagram') {
     return reply({ error: 'Choose no social profile, Facebook, or Instagram.' }, 400)
   }
-  const profile = channel === 'email' ? null : readProfile(readText(body?.socialProfile, 254), channel)
+  const profile = channel === 'email' ? null : mode.demo ? demoSocialProfiles[channel] : readProfile(readText(body?.socialProfile, 254), channel)
   if (channel !== 'email' && !profile) {
     return reply({ error: 'Provide a valid profile link for the selected platform.' }, 400)
   }
@@ -64,7 +67,7 @@ export async function POST(request: Request) {
     const { error } = await db.from('consultation_requests').insert({
       user_id: null, contact_email: email, contact_channel: channel, contact_profile: profile,
       guide_slug: guide, question, tracking_code_hash: trackingHash,
-      privacy_notice_version: consultationPrivacyVersion, privacy_consented_at: new Date().toISOString(),
+      privacy_notice_version: mode.privacyVersion, privacy_consented_at: new Date().toISOString(),
       client_intake_snapshot: { full_name, age, barangay, city, province, documents: [...new Set(documents)] },
     })
     if (!error) return reply({ code }, 201)

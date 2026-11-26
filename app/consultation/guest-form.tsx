@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import FormField from '../form-field'
+import { demoConsultation, demoSocialProfiles } from '../../lib/consultation-demo'
 import { readProfile, validContactEmail } from '../../lib/contact-format'
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { documentOptions } from '../../lib/client-intake'
@@ -21,6 +22,7 @@ export default function GuestForm({ guides, privacyVersion, preview }: { guides:
   const [copied, setCopied] = useState(false)
   const [busy, setBusy] = useState(false)
   const [message, setMessage] = useState('')
+  const formRef = useRef<HTMLFormElement>(null)
   const picker = useRef<HTMLDialogElement>(null)
   const receipt = useRef<HTMLHeadingElement>(null)
 
@@ -49,6 +51,21 @@ export default function GuestForm({ guides, privacyVersion, preview }: { guides:
     if (code) receipt.current?.focus()
   }, [code])
 
+  function fillDemoDetails() {
+    const form = formRef.current
+    if (!form) return
+    form.reset()
+    const { city, ...fields } = demoConsultation
+    for (const [name, value] of Object.entries(fields)) {
+      const control = form.elements.namedItem(name)
+      if (control instanceof HTMLInputElement || control instanceof HTMLTextAreaElement) control.value = String(value)
+    }
+    setCity(city)
+    setChannel('email')
+    if (!documents.length && !none) setDocuments(['birth-certificate'])
+    setMessage('')
+  }
+
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     if (busy) return
@@ -66,7 +83,10 @@ export default function GuestForm({ guides, privacyVersion, preview }: { guides:
     try {
       const response = await fetch('/api/guest-consultations', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...fields, age: Number(fields.age), channel, guide, documents, privacyConsent: true, privacyVersion }),
+        body: JSON.stringify({
+          ...(preview ? demoConsultation : { ...fields, age: Number(fields.age) }),
+          channel, guide, documents, privacyConsent: true, privacyVersion,
+        }),
       })
       const result = await response.json()
       if (!response.ok) throw new Error(result.error || 'Could not save your request.')
@@ -89,16 +109,16 @@ export default function GuestForm({ guides, privacyVersion, preview }: { guides:
       }}>{copied ? 'Copied' : 'Copy code'}</button>
       <Link className="button button-primary" href="/track">Check request status</Link>
     </div>
-    <p>The consultant will reach out manually using the contact details you shared.</p>
+    <p>{preview ? 'This is a sample ticket. You can track its progress without expecting a reply.' : 'The consultant will reach out manually using the contact details you shared.'}</p>
     {message && <p role="status">{message}</p>}
   </section>
 
-  return <form className="consult-panel guest-consult-form" onSubmit={submit}>
+  return <form ref={formRef} className="consult-panel guest-consult-form" onSubmit={submit} autoComplete={preview ? "off" : undefined}>
     <h2>Request a consultation</h2>
     <aside className="privacy-notice" aria-label="Consultation privacy">
-      <strong>Before you share your details</strong>
-      <p>We use your details to review your request and contact you about it. Read the <Link className="text-link" href="/privacy" target="_blank" rel="noopener">consultation privacy notice (opens in a new tab)</Link>.</p>
-      {preview && <p><strong>Preview:</strong> Use sample information only.</p>}
+      <strong>{preview ? 'Demo consultation' : 'Before you share your details'}</strong>
+      <p>{preview ? 'Use sample information only. This demo saves fictional contact details.' : 'We use your details to review your request and contact you about it.'} Read the <Link className="text-link" href="/privacy" target="_blank" rel="noopener">consultation privacy notice (opens in a new tab)</Link>.</p>
+      {preview && <button type="button" className="button button-outline" onClick={fillDemoDetails}>Use sample details</button>}
     </aside>
     <div className="consult-name-row">
     <FormField label="Full name"><input name="full_name" autoComplete="name" placeholder="e.g. Mika Santos" maxLength={120} required /></FormField>
@@ -123,7 +143,7 @@ export default function GuestForm({ guides, privacyVersion, preview }: { guides:
         </label>)}</div>
         {channel !== 'email' && <FormField key={channel} label={`${channels[channel]} profile link`}
           validate={value => readProfile(value.trim(), channel) ? undefined : `Enter a valid ${channels[channel]} profile link.`}>
-          <input name="socialProfile" type="url" autoComplete="url" placeholder={channel === 'facebook' ? 'https://www.facebook.com/yourname' : 'https://www.instagram.com/yourname/'} maxLength={254} required />
+          <input name="socialProfile" type="url" autoComplete="url" defaultValue={preview ? demoSocialProfiles[channel] : undefined} placeholder={channel === 'facebook' ? 'https://www.facebook.com/yourname' : 'https://www.instagram.com/yourname/'} maxLength={254} required />
         </FormField>}
       </fieldset>
     </fieldset>
@@ -158,7 +178,7 @@ export default function GuestForm({ guides, privacyVersion, preview }: { guides:
     <p>Keep ID numbers and document scans out of your request. Only staff handling your request can see your details.</p>
     <div className="privacy-consent">
       <label><input type="checkbox" name="privacyConsent" value="accepted" required />
-        <span>I’ve read the consultation privacy notice and agree that First ID PH may use the information I provide to review my request and contact me about it.</span>
+        <span>{preview ? 'I’ve read the privacy notice and agree to submit a sample consultation request.' : 'I’ve read the consultation privacy notice and agree that First ID PH may use the information I provide to review my request and contact me about it.'}</span>
       </label>
     </div>
     {message && <p role="alert">{message}</p>}

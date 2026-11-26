@@ -521,3 +521,4 @@ html { scroll-padding-top: 76px; }
 }
 .consult-panel input[type="number"] { min-width: 0; }
 .consult-panel .field-example { color: #52685d; font-size: .85rem; line-height: 1.4; margin: 0; }
+.guest-consult-form .privacy-notice .button { margin-top: 8px; }

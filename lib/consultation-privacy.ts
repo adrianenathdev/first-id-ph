@@ -7,3 +7,13 @@ export function getConsultationPrivacyDetails() {
   if (!controller || !contact || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact) || !retention) return null
   return { controller, contact, retention }
 }
+
+export function getConsultationMode() {
+  const details = getConsultationPrivacyDetails()
+  const demo = process.env.CONSULTATION_DEMO_MODE === 'true' || (!details && process.env.NODE_ENV !== 'production')
+  return {
+    demo,
+    available: demo || Boolean(details),
+    privacyVersion: demo ? '2026-11-26-demo-v1' : consultationPrivacyVersion,
+  }
+}
